@@ -38,32 +38,34 @@ class BackupStationWindow(Gtk.Window):
 
         return self.be_name, self.be_not_active
 
-    def create_be_window(self, button):
-        dialog = DialogWindow()
-        dialog.add_primary_text(_("Create a new boot environment"))
-        dialog.add_secondary_text(_("Please enter a name for the boot environment."))
-        dialog.add_input()
-        response = dialog.run()
+    def create_be_window(self, _button):
+        source_be = self.select_be()[0]
+        create_be_dialog = DialogWindow()
+        create_be_dialog.add_primary_text(_("Create a new boot environment"))
+        create_be_dialog.add_secondary_text(_("Source boot environment: {be}").format(be=source_be))
+        create_be_dialog.add_secondary_text(_("Please enter a name for the boot environment."))
+        create_be_dialog.add_input()
+        create_be_dialog_response = create_be_dialog.run()
 
-        if response == Gtk.ResponseType.OK:
-            bectl.create_be(dialog.input.get_text())
+        if create_be_dialog_response == Gtk.ResponseType.OK:
+            bectl.create_be(dialog.input.get_text(), source_be)
             self.refresh_be_list()
 
         dialog.destroy()
 
     def rename_be_window(self, button):
-        dialog = DialogWindow()
-        dialog.add_primary_text(_("Rename a boot environment"))
+        rename_be_dialog = DialogWindow()
+        rename_be_dialog.add_primary_text(_("Rename a boot environment"))
         dialog.add_secondary_text(_("Please enter a new name for the boot environment."))
-        dialog.add_input()
-        response = dialog.run()
+        rename_be_dialog.add_input()
+        rename_be_dialog_response = dialog.run()
 
-        if response == Gtk.ResponseType.OK:
+        if rename_be_dialog_response == Gtk.ResponseType.OK:
             be_name = self.select_be()[0]
             bectl.rename_be(be_name, dialog.input.get_text())
             self.refresh_be_list()
 
-        dialog.destroy()
+        rename_be_dialog.destroy()
 
     def activate_be(self, button):
         be_name = self.select_be()[0]
@@ -71,12 +73,12 @@ class BackupStationWindow(Gtk.Window):
         self.refresh_be_list()
 
     def delete_be(self, button):
-        dialog = DialogWindow()
-        dialog.add_primary_text(_("Delete a boot environment"))
-        dialog.add_secondary_text(_("Are you sure? This action cannot be undone."))
-        response = dialog.run()
+        delete_be_dialog = DialogWindow()
+        delete_be_dialog.add_primary_text(_("Delete a boot environment"))
+        delete_be_dialog.add_secondary_text(_("Are you sure? This action cannot be undone."))
+        delete_be_response = delete_be_dialog.run()
 
-        if response == Gtk.ResponseType.OK:
+        if delete_be_response == Gtk.ResponseType.OK:
             be_name, be_not_active = self.select_be()
             if (be_not_active == "-"):
                 bectl.destroy_be(be_name)
