@@ -11,12 +11,12 @@ from gi.repository import Gtk
 
 __VERSION__ = '0.7'
 
-gettext.bindtextdomain('backup-station', '/usr/local/share/locale')
-gettext.textdomain('backup-station')
+gettext.bindtextdomain('be-station', '/usr/local/share/locale')
+gettext.textdomain('be-station')
 _ = gettext.gettext
 
 
-class BackupStationWindow(Gtk.Window):
+class BeStationWindow(Gtk.Window):
     def create_be_list(self):
         data = bectl.get_be_list()
         for element in data:
@@ -84,7 +84,7 @@ class BackupStationWindow(Gtk.Window):
                 bectl.destroy_be(be_name)
                 self.refresh_be_list()
             else:
-                error = Gtk.Dialog(_("Backup Station"))
+                error = Gtk.Dialog(_("BE Station"))
                 message = Gtk.Label(label=_("You cannot delete an active boot environment"))
                 message.show()
                 error.vbox.pack_start(message, True, True, 5)
@@ -105,7 +105,7 @@ class BackupStationWindow(Gtk.Window):
         self.refresh_be_list()
 
     def __init__(self):
-        super().__init__(title=_("Backup Station"))
+        super().__init__(title=_("BE Station"))
 
         self.set_resizable(False)
 
@@ -193,7 +193,7 @@ class DialogWindow(Gtk.Dialog):
     def __init__(self):
         Gtk.Dialog.__init__(self)
         self.transient_for = self,
-        self.title = self.set_title(_("Backup Station")),
+        self.title = self.set_title(_("BE Station")),
         self.add_buttons(
             Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_OK, Gtk.ResponseType.OK,
@@ -207,7 +207,7 @@ class confirmation(Gtk.Window):
         password = self.passwd.get_text()
         if crypt.crypt(password, pwd_hash) == pwd_hash:
             self.hide()
-            BackupStationWindow().show_all()
+            BeStationWindow().show_all()
         else:
             dialog = DialogWindow()
             dialog.add_primary_text(_("Entered wrong password"))
@@ -223,7 +223,7 @@ class confirmation(Gtk.Window):
 
     def __init__(self, user):
         Gtk.Window.__init__(self)
-        self.set_title(_("Backup Station"))
+        self.set_title(_("BE Station"))
         self.set_resizable(False)
         self.connect("delete-event", Gtk.main_quit)
         self.set_size_request(300, 80)
@@ -257,17 +257,17 @@ class confirmation(Gtk.Window):
 if os.geteuid() == 0:
     user = os.getenv("SUDO_USER")
     if user is None:
-        BackupStationWindow()
+        BeStationWindow()
     else:
         confirmation(user)
 else:
     dialog = DialogWindow()
-    dialog.add_primary_text(_("Backup Station must be run with root privileges"))
+    dialog.add_primary_text(_("BE Station must be run with root privileges"))
     dialog.add_secondary_text(_("Would you like to use sudo?"))
     response = dialog.run()
 
     if response == Gtk.ResponseType.OK:
-        os.popen("sudo backup-station")
+        os.popen("sudo be-station")
     exit()
 
 Gtk.main()

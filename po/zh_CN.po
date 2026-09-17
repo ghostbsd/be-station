@@ -17,103 +17,106 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.6\n"
 
-#: backup-station.py:45
+#: be-station:44
 msgid "Create a new boot environment"
 msgstr "创建新的启动环境"
 
-#: backup-station.py:46
+#: be-station:45
+msgid "Source boot environment: {be}"
+msgstr "源启动环境：{be}"
+
+#: be-station:46
 msgid "Please enter a name for the boot environment."
 msgstr "请为这个新的启动环境起个名字。"
 
-#: backup-station.py:58
+#: be-station:58
 msgid "Rename a boot environment"
 msgstr "重命名启动环境"
 
-#: backup-station.py:59
+#: be-station:59
 msgid "Please enter a new name for the boot environment."
 msgstr "请为启动环境输入新的名字。"
 
-#: backup-station.py:77
+#: be-station:77
 msgid "Delete a boot environment"
 msgstr "删除启动环境"
 
-#: backup-station.py:78
+#: be-station:78
 msgid "Are you sure? This action cannot be undone."
 msgstr "你确定吗？该操作不可撤销。"
 
-#: backup-station.py:87 backup-station.py:108 backup-station.py:196
-#: backup-station.py:226
-msgid "Backup Station"
-msgstr "备份中心"
+#: be-station:87 be-station:108 be-station:196 be-station:226
+msgid "BE Station"
+msgstr "启动环境中心"
 
-#: backup-station.py:88
+#: be-station:88
 msgid "You cannot delete an active boot environment"
 msgstr "你无法删除当前正在运行的启动环境"
 
-#: backup-station.py:119
+#: be-station:119
 msgid "BE name"
 msgstr "启动环境名称"
 
-#: backup-station.py:122
+#: be-station:122
 msgid "Active"
 msgstr "激活"
 
-#: backup-station.py:125
+#: be-station:125
 msgid "Mountpoint"
 msgstr "挂载点"
 
-#: backup-station.py:128
+#: be-station:128
 msgid "Space"
 msgstr "空间"
 
-#: backup-station.py:131
+#: be-station:131
 msgid "Date"
 msgstr "日期"
 
-#: backup-station.py:134
+#: be-station:134
 msgid "Time"
 msgstr "时间"
 
-#: backup-station.py:138
+#: be-station:138
 msgid "Create BE"
 msgstr "创建启动环境"
 
-#: backup-station.py:141
+#: be-station:141
 msgid "Rename BE"
 msgstr "删除启动环境"
 
-#: backup-station.py:144
+#: be-station:144
 msgid "Activate BE"
 msgstr "激活启动环境"
 
-#: backup-station.py:147
+#: be-station:147
 msgid "Delete BE"
 msgstr "删除启动环境"
 
-#: backup-station.py:150
+#: be-station:150
 msgid "Mount BE"
 msgstr "挂载启动环境"
 
-#: backup-station.py:153
+#: be-station:153
 msgid "Unmount BE"
 msgstr "卸载启动环境"
 
-#: backup-station.py:213
+#: be-station:213
 msgid "Entered wrong password"
 msgstr "输入的密码错误"
 
-#: backup-station.py:214
+#: be-station:214
 msgid "Would you like to try again?"
 msgstr "你想重试一次吗？"
 
-#: backup-station.py:233
+#: be-station:233
 msgid "Confirm password for"
 msgstr "确认密码"
 
-#: backup-station.py:265
-msgid "Backup Station must be run with root privileges"
-msgstr "备份中心需要 root 权限才能运行"
+#: be-station:265
+msgid "BE Station must be run with root privileges"
+msgstr "启动环境中心需要 root 权限才能运行"
 
-#: backup-station.py:266
+#: be-station:266
 msgid "Would you like to use sudo?"
 msgstr "你想使用 sudo 吗？"
