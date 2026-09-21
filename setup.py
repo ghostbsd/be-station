@@ -13,7 +13,7 @@ import DistUtilsExtra.command.clean_i18n
 # to update i18n .mo files (and merge .pot file into .po files):
 # ,,python setup.py build_i18n -m''
 
-for line in open('backup-station').readlines():
+for line in open('be-station').readlines():
     if line.startswith('__VERSION__'):
         exec(line.strip())
         break
@@ -40,8 +40,8 @@ prefix = sys.prefix
 # '{prefix}/share/man/man1'.format(prefix=sys.prefix), glob('data/*.1')),
 
 data_files = [
-    (f'{prefix}/share/applications', ['backup-station.desktop']),
-    (f'{prefix}/etc/sudoers.d', ['sudoers.d/backup-station']),
+    (f'{prefix}/share/applications', ['be-station.desktop']),
+    (f'{prefix}/etc/sudoers.d', ['sudoers.d/be-station']),
 ]
 
 data_files.extend(datafilelist('{prefix}/share/locale'.format(prefix=sys.prefix), 'build/mo'))
@@ -52,14 +52,14 @@ cmdclass ={
      "clean": DistUtilsExtra.command.clean_i18n.clean_i18n,
 }
 
-setup(name="backup-station",
+setup(name="be-station",
       version=PROGRAM_VERSION,
       description="GhostBSD boot environment manager",
       license='BSD',
       author='Eric Turgeon',
-      url='https://github/GhostBSD/backup-station/',
+      url='https://github.com/GhostBSD/be-station/',
       package_dir={'': '.'},
       data_files=data_files,
       install_requires=['setuptools', 'bectl'],
-      scripts=['backup-station'],
+      scripts=['be-station'],
       cmdclass = cmdclass)
